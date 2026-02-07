@@ -110,11 +110,7 @@ export default function ContactPage() {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <h3 className="text-lg font-semibold">Send a message</h3>
-                    <p className="text-sm text-foreground/70">
-                      Form is ready — we’ll connect the backend later.
-                    </p>
                   </div>
-                  <Badge variant="secondary">Design only</Badge>
                 </div>
 
                 <Separator />
@@ -125,16 +121,58 @@ export default function ContactPage() {
                     className="space-y-4"
                   >
                     <fieldset disabled={contactMutation.isPending}>
-                      <div className="grid gap-4 md:grid-cols-2">
+                      <div className="space-y-4">
+                        <div className="grid gap-4 md:grid-cols-2">
+                          <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Your name" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Email</FormLabel>
+                                <FormControl>
+                                  <Input
+                                    placeholder="you@email.com"
+                                    type="email"
+                                    autoComplete="email"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+
                         <FormField
                           control={form.control}
-                          name="name"
+                          name="subject"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Name</FormLabel>
+                              <FormLabel>Subject</FormLabel>
                               <FormControl>
-                                <Input placeholder="Your name" {...field} />
+                                <Input
+                                  placeholder="What is this about?"
+                                  {...field}
+                                />
                               </FormControl>
+                              <FormDescription>
+                                Example: “Frontend role”, “Project
+                                collaboration”, “Tutoring”
+                              </FormDescription>
                               <FormMessage />
                             </FormItem>
                           )}
@@ -142,15 +180,14 @@ export default function ContactPage() {
 
                         <FormField
                           control={form.control}
-                          name="email"
+                          name="message"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Email</FormLabel>
+                              <FormLabel>Message</FormLabel>
                               <FormControl>
-                                <Input
-                                  placeholder="you@email.com"
-                                  type="email"
-                                  autoComplete="email"
+                                <Textarea
+                                  placeholder="Tell me what you’re building…"
+                                  rows={6}
                                   {...field}
                                 />
                               </FormControl>
@@ -158,65 +195,26 @@ export default function ContactPage() {
                             </FormItem>
                           )}
                         />
-                      </div>
 
-                      <FormField
-                        control={form.control}
-                        name="subject"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Subject</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="What is this about?"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormDescription>
-                              Example: “Frontend role”, “Project collaboration”,
-                              “Tutoring”
-                            </FormDescription>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Message</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Tell me what you’re building…"
-                                rows={6}
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <div className="flex flex-wrap items-center gap-2 pt-2">
-                        <Button
-                          type="submit"
-                          disabled={contactMutation.isPending}
-                        >
-                          {contactMutation.isPending
-                            ? 'Sending...'
-                            : 'Send Message'}
-                        </Button>
-
-                        <div className="ml-auto flex gap-2">
+                        <div className="flex flex-wrap items-center gap-2 pt-2">
                           <Button
-                            type="button"
-                            variant="outline"
-                            onClick={() => form.reset()}
+                            type="submit"
+                            disabled={contactMutation.isPending}
                           >
-                            Reset
+                            {contactMutation.isPending
+                              ? 'Sending...'
+                              : 'Send Message'}
                           </Button>
+
+                          <div className="ml-auto flex gap-2">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              onClick={() => form.reset()}
+                            >
+                              Reset
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </fieldset>

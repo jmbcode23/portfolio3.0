@@ -95,15 +95,11 @@ app.use(errorHandler);
 // Database connection
 connectDB()
   .then(() => {
-    const PORT = process.env.PORT || 5000;
+    const PORT = Number(process.env.PORT) || 5000;
+    const HOST = "0.0.0.0";
 
-    const server = app.listen(PORT, () => {
-      console.log(`
-      🚀 Server running in ${process.env.NODE_ENV || "development"} mode
-      📍 Port: ${PORT}
-      📅 ${new Date().toLocaleString()}
-      🔗 Health check: http://localhost:${PORT}/health
-    `);
+    const server = app.listen(PORT, HOST, () => {
+      console.log(`🚀 Server ready on port ${PORT}`);
     });
 
     // Handle unhandled promise rejections
