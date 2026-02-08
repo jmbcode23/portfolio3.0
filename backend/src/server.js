@@ -103,7 +103,7 @@ connectDB()
     });
 
     // Handle unhandled promise rejections
-    process.on("unhandledRejection", (err: Error) => {
+    process.on("unhandledRejection", (err) => {
       console.error("Unhandled Promise Rejection:", err.message);
       console.error(err.stack);
       // Close server & exit process
@@ -111,7 +111,7 @@ connectDB()
     });
 
     // Handle uncaught exceptions
-    process.on("uncaughtException", (err: Error) => {
+    process.on("uncaughtException", (err) => {
       console.error("Uncaught Exception:", err.message);
       console.error(err.stack);
       process.exit(1);

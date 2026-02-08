@@ -4,12 +4,12 @@ import { motion } from 'framer-motion'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'sonner'
 import { profile } from '../data/profile'
 import { Card, CardContent } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Textarea } from '../components/ui/textarea'
-import { Badge } from '../components/ui/badge'
 import { Separator } from '../components/ui/separator'
 
 import {
@@ -200,6 +200,7 @@ export default function ContactPage() {
                           <Button
                             type="submit"
                             disabled={contactMutation.isPending}
+                            className="cursor-pointer"
                           >
                             {contactMutation.isPending
                               ? 'Sending...'
@@ -211,6 +212,7 @@ export default function ContactPage() {
                               type="button"
                               variant="outline"
                               onClick={() => form.reset()}
+                              className="cursor-pointer"
                             >
                               Reset
                             </Button>
