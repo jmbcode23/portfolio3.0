@@ -5,7 +5,7 @@ import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
 import morgan from "morgan";
-import connectDB from "./config/db";
+import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware";
 import contactRouter from "./routes/contact.route";
 dotenv.config();
