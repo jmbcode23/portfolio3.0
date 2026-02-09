@@ -6,7 +6,7 @@ import compression from "compression";
 import rateLimit from "express-rate-limit";
 import morgan from "morgan";
 import { connectDB } from "./config/db.js";
-import contactRouter from "./routes/contact.route.ts";
+import contactRouter from "./routes/contact.route";
 dotenv.config();
 
 // Initialize express app

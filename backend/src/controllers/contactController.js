@@ -6,12 +6,7 @@ const INBOX_TO = process.env.CONTACT_INBOX_TO || "jonathanmilolocode@gmail.com";
 const FROM_EMAIL =
   process.env.RESEND_FROM || "Portfolio <support@updates.b-cleanservice.com>";
 
-export async function sendContactEmail(params: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}) {
+export async function sendContactEmail(params) {
   const { name, email, subject, message } = params;
 
   return resend.emails.send({
@@ -24,17 +19,7 @@ export async function sendContactEmail(params: {
   });
 }
 
-function contactTextTemplate({
-  name,
-  email,
-  subject,
-  message,
-}: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}) {
+function contactTextTemplate({ name, email, subject, message }) {
   return `New contact form submission
 
 Name: ${name}
@@ -46,7 +31,7 @@ ${message}
 `;
 }
 
-function escapeHtml(input: string) {
+function escapeHtml(input) {
   return input
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -55,17 +40,7 @@ function escapeHtml(input: string) {
     .replace(/'/g, "&#039;");
 }
 
-function contactHtmlTemplate({
-  name,
-  email,
-  subject,
-  message,
-}: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}) {
+function contactHtmlTemplate({ name, email, subject, message }) {
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
   const safeSubject = escapeHtml(subject);
