@@ -5,9 +5,9 @@ import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
 import morgan from "morgan";
-import connectDB from "./config/db";
-import { errorHandler, notFound } from "./middleware/errorMiddleware";
-import contactRouter from "./routes/contact.route";
+import connectDB from "./config/db.ts";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.ts";
+import contactRouter from "./routes/contact.route.ts";
 dotenv.config();
 
 // Initialize express app
