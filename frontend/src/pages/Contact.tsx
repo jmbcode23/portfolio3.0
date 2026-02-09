@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from 'sonner'
 import { profile } from '../data/profile'
 import { Card, CardContent } from '../components/ui/card'
 import { Button } from '../components/ui/button'
@@ -67,7 +66,6 @@ export default function ContactPage() {
       // Reset only if request succeeded
       form.reset()
     } catch (error) {
-      // No toast here — mutation already handles error toast
       console.error('Contact form submission failed:', error)
     }
   }
