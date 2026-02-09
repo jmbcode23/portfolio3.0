@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
+import cors from "cors";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
 import morgan from "morgan";
@@ -22,6 +23,8 @@ const ContactSchema = z.object({
 // Initialize express app
 const app = express();
 
+// CORS middleware
+app.use(cors());
 // Security middleware
 app.use(
   helmet({
