@@ -5,7 +5,7 @@ import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
 import morgan from "morgan";
-import connectDB from "./config/db.js";
+import connectDB from "./config/db";
 import { errorHandler, notFound } from "./middleware/errorMiddleware";
 import contactRouter from "./routes/contact.route";
 dotenv.config();
@@ -103,7 +103,7 @@ connectDB()
     });
 
     // Handle unhandled promise rejections
-    process.on("unhandledRejection", (err) => {
+    process.on("unhandledRejection", (err: Error) => {
       console.error("Unhandled Promise Rejection:", err.message);
       console.error(err.stack);
       // Close server & exit process
@@ -111,7 +111,7 @@ connectDB()
     });
 
     // Handle uncaught exceptions
-    process.on("uncaughtException", (err) => {
+    process.on("uncaughtException", (err: Error) => {
       console.error("Uncaught Exception:", err.message);
       console.error(err.stack);
       process.exit(1);

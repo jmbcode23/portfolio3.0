@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 // Not found middleware
 export const notFound = (req: Request, res: Response, next: NextFunction) => {
