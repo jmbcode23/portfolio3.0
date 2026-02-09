@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors";
 import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
@@ -29,18 +28,6 @@ app.use(
     crossOriginResourcePolicy: { policy: "cross-origin" },
   }),
 );
-
-// CORS configuration
-const corsOptions = {
-  origin:
-    process.env.NODE_ENV === "production"
-      ? process.env.ALLOWED_ORIGINS?.split(",") || ["http://localhost:5174"]
-      : "http://localhost:3000",
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({
